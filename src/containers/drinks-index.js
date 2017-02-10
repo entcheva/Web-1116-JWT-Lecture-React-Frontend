@@ -9,12 +9,19 @@ class Drinks extends Component {
     this.props.fetchDrinks()
   }
 
+  handleDrinks(){
+    return this.props.drinks.map(drink => <li key={drink.id}> <Link to={`/drinks/${drink.id}`}> {drink.name} </Link> </li>)
+  }
+
   render() {
     return(
       <div>
-        {React.Children.map(this.props.children, (child)=>{
-          return React.cloneElement({...child, props: {...child.props, drinks: this.props.drinks}})
-        })}
+        <div style={{float: 'left', display: 'inline-block'}}>
+          {this.handleDrinks()}
+        </div>
+        <div style={{float: 'right', display: 'inline-block', width: '57%'}}>
+          {this.props.children}
+        </div>
       </div>
     )
   }

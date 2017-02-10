@@ -16,11 +16,11 @@ class CategoriesShow extends Component {
     let drinks = this.handleDrink(category)
     return(
       <div>
-        <h2>{category.name}!</h2>
         <Link to="/categories"> {"<--categories"} </Link>
         <Link to="/drinks"> {"<--drinks"} </Link>
         {category ? (
           <div>
+            <h2>{category.name}!</h2>
             <p><strong>Name: </strong>{category.name}</p>
             <p><strong>Description: </strong>{category.description}</p>
             <p><strong>Drinks: </strong></p>
