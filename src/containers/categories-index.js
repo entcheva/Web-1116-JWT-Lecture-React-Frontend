@@ -10,16 +10,18 @@ class Categories extends Component {
   }
 
   handleCategories(){
-    return this.props.categories ? this.props.categories.map(category => <li key={category.id}> <Link to={`/categories/${category.id}`}> {category.name} </Link> </li>) : "Loading..."
+    return this.props.categories ? this.props.categories.map(category => <li key={category.id} className="collection-item"><div>{category.name}<Link to={`/categories/${category.id}`} className="secondary-content"><i className="material-icons">send</i></Link></div></li>) : "Loading..."
   }
 
   render() {
     return(
-      <div>
-        <div style={{float: 'left', display: 'inline-block'}}>
-          {this.handleCategories()}
+      <div className="row">
+        <div className="col s6">
+          <ul className="collection with-header">
+            {this.handleCategories()}
+          </ul>
         </div>
-        <div style={{float: 'right', display: 'inline-block', width: '70%'}}>
+        <div className="col s6">
           {this.props.children}
         </div>
       </div>

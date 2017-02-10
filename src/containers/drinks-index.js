@@ -10,16 +10,18 @@ class Drinks extends Component {
   }
 
   handleDrinks(){
-    return this.props.drinks.map(drink => <li key={drink.id}> <Link to={`/drinks/${drink.id}`}> {drink.name} </Link> </li>)
+    return this.props.drinks.map(drink => <li key={drink.id} className="collection-item"><div>{drink.name}<Link to={`/drinks/${drink.id}`} className="secondary-content"><i className="material-icons">send</i></Link></div></li>)
   }
 
   render() {
     return(
-      <div>
-        <div style={{float: 'left', display: 'inline-block'}}>
-          {this.handleDrinks()}
+      <div className="row">
+        <div className="col s6">
+          <ul className="collection with-header">
+            {this.handleDrinks()}
+          </ul>
         </div>
-        <div style={{float: 'right', display: 'inline-block', width: '57%'}}>
+        <div className="col s6">
           {this.props.children}
         </div>
       </div>
