@@ -7,8 +7,8 @@ export default (props) => {
   return(
     <div>
       <h2>Category!</h2>
-      <Link to="/categories"> {"<--categories"} </Link>
-      <Link to="/drinks"> {"<--drinks"} </Link>
+      <p><Link to="/categories"> {"<--categories"} </Link></p>
+      <p><Link to="/drinks"> {"<--drinks"} </Link></p>
       {category ? (
         <div>
           <p><strong>Name: </strong>{category.name}</p>
