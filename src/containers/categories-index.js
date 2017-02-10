@@ -9,12 +9,19 @@ class Categories extends Component {
     this.props.fetchCategories()
   }
 
+  handleCategories(){
+    return this.props.categories ? this.props.categories.map(category => <li key={category.id}> <Link to={`/categories/${category.id}`}> {category.name} </Link> </li>) : "Loading..."
+  }
+
   render() {
     return(
       <div>
-        {React.Children.map(this.props.children, (child)=>{
-          return React.cloneElement({...child, props: {...child.props, categories: this.props.categories}})
-        })}
+        <div style={{float: 'left', display: 'inline-block'}}>
+          {this.handleCategories()}
+        </div>
+        <div style={{float: 'right', display: 'inline-block', width: '70%'}}>
+          {this.props.children}
+        </div>
       </div>
     )
   }
