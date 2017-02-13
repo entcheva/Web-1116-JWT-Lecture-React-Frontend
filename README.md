@@ -33,7 +33,19 @@ Note: I will try to color code so that it’s obvious what lines go in our front
     3. Also uncomment the `bcrypt` gem - we’ll need this later
 2. REACT-REDUX create a route ( using react-router ) to your user signup component.
     1. I put mine as the first nested child route inside my root Route. It’s using my `UserSignUp` component ( which we haven’t created yet ) and directing to that component when the url matches “/signup” ( the initial “/“ comes from our App Route so we won’t actually have to include that in our signup path - it should just be `path=“signup”` )
-        1. PICTURE
+        1. ```javascript
+        export default (
+          <Route path="/" component={App}>
+            <Route path="signup" component={UserSignUp}/>
+            <Route path="categories" component={CategoriesIndex} >
+              <Route path=":id" component={CategoriesShow} />
+            </Route>
+            <Route path="drinks" component={DrinksIndex} >
+              <Route path=":id" component={DrinksShow} />
+            </Route>
+          </Route>
+        )
+        ```
         2. Don’t forget to import the to-be created `UserSignUp` component
 3. REACT-REDUX create the `UserSignUp` component with a form and an action / event to trigger on form submit
     1. Let’s make it a JavaScript class component because we will need an action to dispatch our user information
@@ -43,9 +55,26 @@ Note: I will try to color code so that it’s obvious what lines go in our front
         2. make sure every input you use inside your form has it’s own unique `ref` field ( ex. `<input ref=“password” type=“password” />` ) we will need these to grab our users’ input values after they submit the form
         3. also, make sure to include a `submit` button at the bottom of the form
         4. last for our form, add an `onSubmit` event field to your `form` tag. This event will trigger a custom function that we haven’t written yet to handle gathering our user’s information on form submit. ( make sure you prepend your `this` context to the callback function - remember we’re using a JavaScript class so we have to be explicit in referencing a function within the same class )
-            1. PICTURE
+            1. ```javascript
+              <div>
+                <form onSubmit={this.handleUserSignup}>
+                  <label>Name: </label>
+                  <input ref="name"/>
+                  <br/>
+                  <label>Email: </label>
+                  <input ref="email" type="email"/>
+                  <br/>
+                  <label>Password: </label>
+                  <input ref="password" type="password"/>
+                  <br/>
+                  <label>Password Confirmation: </label>
+                  <input ref="password_confirmation" type="password"/>
+                  <br/>
+                  <button value="submit">Submit</button>
+                </form>
+              </div>
+            ```
         5. create a `constructor( )` method to handle the binding of your context to the function handling our users’ form submit event
-            1. PICTURE
         6. create your custom function to handle the form submit event
             1. this function should take in one argument, which will be our event object passed in by the onSubmit event ( we need it to prevent our page from refreshing - `event.preventDefault( )` )
             2. inside the function create a variable that will reference an object of key-values pertaining to the information gathered from the submitted form
