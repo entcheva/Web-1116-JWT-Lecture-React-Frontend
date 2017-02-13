@@ -5,9 +5,11 @@ import CategoriesIndex from './containers/categories-index'
 import CategoriesShow from './components/categories-show'
 import DrinksIndex from './containers/drinks-index'
 import DrinksShow from './components/drinks-show'
+import UserSignUp from './containers/user-sign-up'
 
 export default (
   <Route path="/" component={App}>
+    <Route path="signup" component={UserSignUp}/>
     <Route path="categories" component={CategoriesIndex} >
       <Route path=":id" component={CategoriesShow} />
     </Route>
